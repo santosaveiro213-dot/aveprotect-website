@@ -756,6 +756,55 @@
     box-shadow: 0 2px 10px rgba(139, 92, 246, 0.3);
   }
 
+  /* Collapsible video section */
+  .video-collapse { margin-top: 2rem; text-align: center; }
+  .video-toggle {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--glass-strong);
+    border: 1px solid var(--line);
+    color: #a78bfa;
+    font-family: inherit; font-size: 16px; font-weight: 700;
+    letter-spacing: -0.01em;
+    padding: 12px 22px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  }
+  .video-toggle:hover {
+    background: var(--glass);
+    border-color: rgba(167, 139, 250, 0.4);
+  }
+  .video-toggle:active { transform: scale(0.98); }
+  .video-toggle-icon {
+    display: inline-block;
+    font-size: 11px;
+    color: #a78bfa;
+    transition: transform 0.3s ease;
+  }
+  .video-toggle[aria-expanded="true"] .video-toggle-icon {
+    transform: rotate(180deg);
+  }
+  .video-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin-top: 0;
+    transition:
+      max-height 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+      opacity 0.35s ease,
+      margin-top 0.45s ease;
+  }
+  .video-content.open {
+    max-height: 600px;
+    opacity: 1;
+    margin-top: 16px;
+  }
+  .video-content .video-el {
+    width: 100%; max-width: 800px;
+    border-radius: 12px;
+    border: 1px solid rgba(167, 139, 250, 0.3);
+  }
+
   /* Video placeholder */
   .video-section { margin-top: 24px; text-align: left; }
   .video-section h3 {
@@ -1252,11 +1301,16 @@
           </article>
         </div>
 
-        <div style="margin-top:2rem; text-align:center;">
-          <h3 style="color:#a78bfa; margin-bottom:1rem;">📹 Watch Installation Guide</h3>
-          <video controls style="width:100%; max-width:800px; border-radius:12px; border:1px solid rgba(167,139,250,0.3);">
-            <source src="install-guide.mp4" type="video/mp4">
-          </video>
+        <div class="video-collapse">
+          <button class="video-toggle" type="button" aria-expanded="false" aria-controls="install-video">
+            <span>📹 Watch Installation Guide</span>
+            <span class="video-toggle-icon" aria-hidden="true">▼</span>
+          </button>
+          <div class="video-content" id="install-video">
+            <video controls preload="none" poster="" class="video-el">
+              <source src="install-guide.mp4" type="video/mp4">
+            </video>
+          </div>
         </div>
       </section>
 
@@ -1326,6 +1380,21 @@
 
       /* Kick off counters on the default (home) panel */
       animatePanel('home');
+
+      /* Collapsible video toggle */
+      document.querySelectorAll('.video-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!expanded));
+          const content = btn.nextElementSibling;
+          if (!content) return;
+          content.classList.toggle('open', !expanded);
+          if (expanded) {
+            const vid = content.querySelector('video');
+            if (vid) vid.pause();
+          }
+        });
+      });
     })();
   </script>
 </body>
