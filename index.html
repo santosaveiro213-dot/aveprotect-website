@@ -607,6 +607,62 @@
     color: var(--ink-mute);
   }
 
+  /* Download-tab secondary hint */
+  .dl-hint {
+    margin-top: 14px;
+    font-size: 12.5px;
+    color: var(--ink-mute);
+    line-height: 1.5;
+  }
+  .dl-hint strong { color: var(--ink-dim); font-weight: 600; }
+
+  /* Inline alert / browser-warning box */
+  .alert {
+    border-radius: 14px;
+    padding: 18px 20px;
+    text-align: left;
+    border: 1px solid;
+  }
+  .alert.warn {
+    border-color: rgba(251, 191, 36, 0.4);
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(180, 83, 9, 0.05));
+    box-shadow: 0 12px 30px rgba(251, 191, 36, 0.05);
+  }
+  .alert h4 {
+    font-size: 14.5px; font-weight: 700;
+    margin-bottom: 8px;
+    color: #fcd34d;
+    letter-spacing: -0.01em;
+  }
+  .alert p,
+  .alert li {
+    font-size: 13px; line-height: 1.55;
+    color: var(--ink-dim);
+  }
+  .alert ul { list-style: none; padding: 0; margin: 6px 0 0; }
+  .alert ul li {
+    padding: 3px 0 3px 18px;
+    position: relative;
+  }
+  .alert ul li::before {
+    content: "→";
+    position: absolute; left: 0;
+    color: #fcd34d;
+    font-weight: 700;
+  }
+  .alert .alert-why {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(251, 191, 36, 0.2);
+  }
+  .alert .alert-why strong {
+    display: block;
+    color: var(--ink);
+    font-weight: 600;
+    margin-bottom: 4px;
+    font-size: 13px;
+  }
+
   /* Install steps */
   .install-steps {
     display: grid; gap: 14px;
@@ -1097,13 +1153,15 @@
         </div>
 
         <div>
-          <a href="/AveProtect.Setup.2.0.3.exe" target="_blank" rel="noopener noreferrer" download="AveProtect.Setup.2.0.3.exe" class="btn lg">
+          <a href="https://github.com/santosaveiro213-dot/aveprotect-website/releases/download/v2.0.3/AveProtect.Setup.2.0.3.exe" target="_blank" rel="noopener noreferrer" download="AveProtect.Setup.2.0.3.exe" class="btn lg">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/>
             </svg>
             Download for Windows
           </a>
         </div>
+
+        <p class="dl-hint">Having trouble? → Right-click the button and select <strong>'Open link in new tab'</strong></p>
 
         <div class="reqs">
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg> Windows 10 / 11</span>
@@ -1127,6 +1185,20 @@
               <p>Click the Download button above to get <strong>AveProtect Setup 2.0.3.exe</strong>.</p>
             </div>
           </article>
+
+          <div class="alert warn" role="note">
+            <h4>⚠️ Browser Security Warning</h4>
+            <p>If your browser shows <strong>'Suspicious download blocked'</strong>:</p>
+            <ul>
+              <li>Click the download notification at the bottom</li>
+              <li>Click the arrow (›) next to the file</li>
+              <li>Select <strong>'Keep'</strong> or <strong>'Keep anyway'</strong></li>
+            </ul>
+            <div class="alert-why">
+              <strong>Why does this happen?</strong>
+              <p>AveProtect needs deep access to your computer's system files and processes to monitor and block unauthorized remote access. This is why Windows and your browser may show a security warning — it's normal for protection software that works at a system level. The file is completely safe.</p>
+            </div>
+          </div>
 
           <article class="step warn">
             <div class="step-num">2</div>
