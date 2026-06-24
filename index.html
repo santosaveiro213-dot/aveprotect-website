@@ -711,6 +711,24 @@
     color: var(--ink);
     font-weight: 600;
   }
+  .step ul {
+    list-style: none; padding: 0;
+    margin: 8px 0 0;
+  }
+  .step ul li {
+    padding: 3px 0 3px 18px;
+    position: relative;
+    font-size: 13px; line-height: 1.55;
+    color: var(--ink-dim);
+  }
+  .step ul li::before {
+    content: "•";
+    position: absolute; left: 4px;
+    color: #a78bfa;
+    font-weight: 700;
+  }
+  .step ul li strong { color: var(--ink); font-weight: 600; }
+  .step.warn ul li::before { color: #fcd34d; }
 
   /* Mock Windows context menu */
   .context-menu {
@@ -1175,77 +1193,70 @@
       <!-- INSTALL -->
       <section class="panel" data-panel="install">
         <h2>How to Install</h2>
-        <p class="lead">Four steps. Takes under a minute.</p>
+        <p class="lead">Five steps. Takes under a minute.</p>
 
         <div class="install-steps">
           <article class="step">
             <div class="step-num">1</div>
             <div>
-              <h3>Download</h3>
-              <p>Click the Download button above to get <strong>AveProtect Setup 2.0.5.exe</strong>.</p>
+              <h3>Download the Installer</h3>
+              <p>Click the <strong>'Download for Windows'</strong> button. Your browser may show a security warning — click the arrow next to the file and select <strong>'Keep'</strong> or <strong>'Keep anyway'</strong>.</p>
             </div>
           </article>
-
-          <div class="alert warn" role="note">
-            <h4>⚠️ Browser Security Warning</h4>
-            <p>If your browser shows <strong>'Suspicious download blocked'</strong>:</p>
-            <ul>
-              <li>Click the download notification at the bottom</li>
-              <li>Click the arrow (›) next to the file</li>
-              <li>Select <strong>'Keep'</strong> or <strong>'Keep anyway'</strong></li>
-            </ul>
-            <div class="alert-why">
-              <strong>Why does this happen?</strong>
-              <p>AveProtect needs deep access to your computer's system files and processes to monitor and block unauthorized remote access. This is why Windows and your browser may show a security warning — it's normal for protection software that works at a system level. The file is completely safe.</p>
-            </div>
-          </div>
 
           <article class="step warn">
             <div class="step-num">2</div>
             <div>
-              <h3>⚠️ Run as Administrator</h3>
-              <p><strong>IMPORTANT:</strong> Right-click the downloaded file and select <strong>'Run as administrator'</strong>. This is required for AveProtect to work correctly.</p>
-              <div class="context-menu" aria-hidden="true">
-                <div class="context-menu-item">Open</div>
-                <div class="context-menu-item highlight">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3Z"/>
-                  </svg>
-                  Run as administrator
-                </div>
-                <div class="context-menu-item">Open file location</div>
-                <div class="context-menu-item">Properties</div>
-              </div>
+              <h3>⚠️ Windows SmartScreen Warning</h3>
+              <p>Windows may show <strong>'Windows protected your PC'</strong>. This is normal for new software.</p>
+              <ul>
+                <li>Click <strong>'More info'</strong></li>
+                <li>Click <strong>'Run anyway'</strong></li>
+              </ul>
+              <p style="margin-top:8px;">AveProtect is completely safe to install.</p>
             </div>
           </article>
 
           <article class="step">
             <div class="step-num">3</div>
             <div>
-              <h3>Install</h3>
-              <p>Follow the installation wizard. Click <strong>Next → Next → Install</strong>.</p>
+              <h3>Allow Administrator Access</h3>
+              <p>Windows will ask <strong>'Do you want to allow this app to make changes?'</strong></p>
+              <ul>
+                <li>Click <strong>'Yes'</strong></li>
+              </ul>
+              <p style="margin-top:8px;">This is required so AveProtect can protect your system.</p>
             </div>
           </article>
 
           <article class="step">
             <div class="step-num">4</div>
             <div>
-              <h3>Done</h3>
-              <p>AveProtect starts automatically. Look for the shield icon in your system tray (bottom right of screen).</p>
+              <h3>Follow Installation Wizard</h3>
+              <ul>
+                <li>Click <strong>'Next'</strong></li>
+                <li>Keep default installation folder</li>
+                <li>Click <strong>'Install'</strong></li>
+                <li>Click <strong>'Finish'</strong></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="step">
+            <div class="step-num">5</div>
+            <div>
+              <h3>✅ You're Protected!</h3>
+              <p>Look for the shield icon 🛡️ in your system tray (bottom right).</p>
+              <p style="margin-top:6px;">AveProtect starts automatically with Windows and protects you 24/7.</p>
             </div>
           </article>
         </div>
 
-        <div class="video-section">
-          <h3>Watch Installation Guide</h3>
-          <div class="video-placeholder" role="img" aria-label="Installation video coming soon">
-            <div class="play-btn" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
-            </div>
-            <div class="video-label">Installation video coming soon</div>
-          </div>
+        <div style="margin-top:2rem; text-align:center;">
+          <h3 style="color:#a78bfa; margin-bottom:1rem;">📹 Watch Installation Guide</h3>
+          <video controls style="width:100%; max-width:800px; border-radius:12px; border:1px solid rgba(167,139,250,0.3);">
+            <source src="install-guide.mp4" type="video/mp4">
+          </video>
         </div>
       </section>
 
