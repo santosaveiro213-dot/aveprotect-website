@@ -607,6 +607,122 @@
     color: var(--ink-mute);
   }
 
+  /* Install steps */
+  .install-steps {
+    display: grid; gap: 14px;
+    text-align: left;
+    margin-top: 8px;
+  }
+  .step {
+    background: var(--glass-strong);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px 18px;
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 14px;
+    align-items: start;
+  }
+  .step.warn {
+    border-color: rgba(248, 113, 113, 0.4);
+    background: linear-gradient(135deg, rgba(248, 113, 113, 0.08), rgba(127, 29, 44, 0.06));
+    box-shadow: 0 12px 30px rgba(248, 113, 113, 0.06);
+  }
+  .step-num {
+    width: 32px; height: 32px;
+    border-radius: 10px;
+    background: var(--grad-btn);
+    color: #fff;
+    display: grid; place-items: center;
+    font-weight: 700; font-size: 14px;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.35);
+  }
+  .step.warn .step-num {
+    background: linear-gradient(135deg, #f87171, #b91c1c);
+    box-shadow: 0 4px 12px rgba(248, 113, 113, 0.35);
+  }
+  .step h3 {
+    font-size: 14.5px; font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  .step.warn h3 { color: #fda4af; }
+  .step p {
+    color: var(--ink-dim);
+    font-size: 13px; line-height: 1.55;
+  }
+  .step p strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* Mock Windows context menu */
+  .context-menu {
+    display: inline-block;
+    margin-top: 12px;
+    background: #1f1f1f;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    padding: 4px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    min-width: 220px;
+    font-size: 12.5px;
+  }
+  .context-menu-item {
+    padding: 7px 12px;
+    color: rgba(255, 255, 255, 0.72);
+    border-radius: 4px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .context-menu-item svg { width: 14px; height: 14px; }
+  .context-menu-item.highlight {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.45), rgba(6, 182, 212, 0.45));
+    color: #fff; font-weight: 600;
+    border: 1px solid rgba(167, 139, 250, 0.45);
+    box-shadow: 0 2px 10px rgba(139, 92, 246, 0.3);
+  }
+
+  /* Video placeholder */
+  .video-section { margin-top: 24px; text-align: left; }
+  .video-section h3 {
+    font-size: 15px; font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+  .video-placeholder {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background:
+      radial-gradient(circle at center, rgba(139, 92, 246, 0.18), transparent 60%),
+      #0a0a0a;
+    display: grid; place-items: center;
+  }
+  .video-placeholder .play-btn {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: var(--grad-btn);
+    display: grid; place-items: center;
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.5);
+    transition: transform 0.25s ease;
+  }
+  .video-placeholder:hover .play-btn { transform: scale(1.06); }
+  .video-placeholder .play-btn svg {
+    width: 28px; height: 28px;
+    color: #fff;
+    margin-left: 4px;
+  }
+  .video-placeholder .video-label {
+    position: absolute; bottom: 14px; left: 0; right: 0;
+    text-align: center;
+    font-size: 13px; color: var(--ink-mute);
+    letter-spacing: 0.04em;
+  }
+
   @media (max-width: 540px) {
     .nav { padding: 0 14px; height: 58px; }
     .nav-link { padding: 7px 14px; font-size: 12px; }
@@ -616,6 +732,8 @@
     .btn  { padding: 14px 28px; font-size: 15px; }
     .pill { font-size: 12px; padding: 7px 12px; }
     .stats { gap: 20px; }
+    .video-placeholder .play-btn { width: 56px; height: 56px; }
+    .video-placeholder .play-btn svg { width: 22px; height: 22px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -656,6 +774,7 @@
         <button class="nav-link" data-tab="about"    role="tab">About</button>
         <button class="nav-link" data-tab="features" role="tab">Features</button>
         <button class="nav-link" data-tab="download" role="tab">Download</button>
+        <button class="nav-link" data-tab="install"  role="tab">Install</button>
       </div>
     </nav>
   </header>
@@ -821,6 +940,8 @@
             <button data-tab="features">Features</button>
             <span class="sep">•</span>
             <button data-tab="download">Download</button>
+            <span class="sep">•</span>
+            <button data-tab="install">Install</button>
           </div>
           <div class="footer-copy">© 2026 AveProtect. Free forever. Made to protect people.</div>
           <div class="footer-small">Windows 10/11 • v2.0.3 • SSL Secured</div>
@@ -976,7 +1097,7 @@
         </div>
 
         <div>
-          <a href="https://github.com/santosaveiro213-dot/aveprotect-website/releases/download/v2.0.3/AveProtect.Setup.2.0.3.exe" class="btn lg">
+          <a href="https://github.com/santosaveiro213-dot/aveprotect-website/releases/download/v2.0.3/AveProtect.Setup.2.0.3.exe" target="_blank" rel="noopener noreferrer" download="AveProtect.Setup.2.0.3.exe" class="btn lg">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/>
             </svg>
@@ -991,6 +1112,69 @@
         </div>
 
         <span class="version">Version v2.0.3</span>
+      </section>
+
+      <!-- INSTALL -->
+      <section class="panel" data-panel="install">
+        <h2>How to Install</h2>
+        <p class="lead">Four steps. Takes under a minute.</p>
+
+        <div class="install-steps">
+          <article class="step">
+            <div class="step-num">1</div>
+            <div>
+              <h3>Download</h3>
+              <p>Click the Download button above to get <strong>AveProtect Setup 2.0.3.exe</strong>.</p>
+            </div>
+          </article>
+
+          <article class="step warn">
+            <div class="step-num">2</div>
+            <div>
+              <h3>⚠️ Run as Administrator</h3>
+              <p><strong>IMPORTANT:</strong> Right-click the downloaded file and select <strong>'Run as administrator'</strong>. This is required for AveProtect to work correctly.</p>
+              <div class="context-menu" aria-hidden="true">
+                <div class="context-menu-item">Open</div>
+                <div class="context-menu-item highlight">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3Z"/>
+                  </svg>
+                  Run as administrator
+                </div>
+                <div class="context-menu-item">Open file location</div>
+                <div class="context-menu-item">Properties</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="step">
+            <div class="step-num">3</div>
+            <div>
+              <h3>Install</h3>
+              <p>Follow the installation wizard. Click <strong>Next → Next → Install</strong>.</p>
+            </div>
+          </article>
+
+          <article class="step">
+            <div class="step-num">4</div>
+            <div>
+              <h3>Done</h3>
+              <p>AveProtect starts automatically. Look for the shield icon in your system tray (bottom right of screen).</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="video-section">
+          <h3>Watch Installation Guide</h3>
+          <div class="video-placeholder" role="img" aria-label="Installation video coming soon">
+            <div class="play-btn" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+            <div class="video-label">Installation video coming soon</div>
+          </div>
+        </div>
       </section>
 
     </div>
